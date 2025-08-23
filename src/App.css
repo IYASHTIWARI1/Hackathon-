@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+/* Remove invalid @theme block and use standard CSS for custom animation */
+@keyframes rotate-one {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-spin {
+  animation: rotate-one 2s linear infinite;
+}
+
+@keyframes pulse-height {
+  0%, 100% {
+    height: 40px;
+  }
+  50% {
+    height: 80px;
+  }
+}
+
+.pulse-height {
+  animation: pulse-height 1s ease-in-out infinite;
+}
+
+@keyframes smooth {
+  from{
+    opacity:100%;
+    transition:opacity 3s ease;
+  }
+  to {
+   opacity:1%;
+  }
+}
+
+.smooth{
+  animation: smooth  ease ;
+
+}

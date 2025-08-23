@@ -1,0 +1,51 @@
+import { useEffect } from "react";
+import Button from "./Button";
+import Bot from "./bot";
+import { useState } from "react";
+
+
+function HomePage(){
+  const [showBot, setShowBot] = useState(false);
+    
+ 
+     useEffect(() => {
+      console.log("useEffect render")
+             const botShown = localStorage.getItem("bot_shown");
+    if (!botShown) {
+      setShowBot(true);
+       localStorage.setItem("bot_shown", "true");
+      const timer = setTimeout(() => {
+        setShowBot(false);
+       
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, []); 
+        
+      
+
+ return (<>
+  <div className="bg-[#08111b] border-[#334155]  h-screen text-center pt-20  ">
+    <div className="mb-7">
+
+        <h1 className="text-7xl text-blue-600 mb-4 shadow-xl shadow-blue-500/50 drop-shadow-xl drop-shadow-blue-500/10 font-serif bg-[#08111b] " >CheckMate</h1>
+          <p className=" text-[#94a3b8]">A web Based Detection System  to check harmful phished website with using FastAPI</p>
+    </div>
+        <div>
+         <Button className={" mr-20 "} >Check URL !</Button>
+         <Button>Feature</Button>
+        </div>
+       {showBot && <Bot />}
+       
+  </div>
+
+
+    </>)
+}
+export default HomePage;
+
+//bg-[#1e293b]
+//bg-[#0f172a]
+//text-[#94a3b8]
+// style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
+//drop-shadow-xl drop-shadow-blue-500

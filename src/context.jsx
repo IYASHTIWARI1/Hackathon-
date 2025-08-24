@@ -1,9 +1,22 @@
 import { createContext } from "react";
 
 
-export default TransferContext = createContext();
 
+import { useState } from 'react';
+
+
+const TransferContext = createContext();
+export default TransferContext;
+
+
+export function DataComponent({children}){
+    const [progress,setProgress] = useState(0);
+return(
+      <TransferContext.Provider value = {{progress,setProgress}}>
    
-export function ContextComponent({children}){
-   return {children};
+  <>{children}</>
+
+
+  </TransferContext.Provider>
+)
 }

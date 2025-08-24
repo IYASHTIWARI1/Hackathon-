@@ -12,13 +12,17 @@ function HomePage(){
         
   
  return (<>
-  <div className="bg-[#08111b] border-[#334155]  h-screen text-center pt-10 flex flex-col  ">
-    <div className="mb-5 " >
-        <h1 className="text-7xl text-blue-600  mb-4 pb-5 shadow-xl shadow-blue-500/50  font-serif bg-[#08111b] " >CheckMate</h1>
+  <div className="bg-[rgb(8,17,27)] border-[#334155]  h-screen text-center pt-10 flex flex-col  ">
+    <div className="mb-5  p-0.5 bg-gradient-to-r from-yellow-400 via-pink-500 to-red-600 rounded-lg shadow-md" >
+       <div className="text-reveal-container pt-4  bg-[rgb(8,17,27)] h-full w-full ">
+        <h1 className="text-7xl reveal-text  text-blue-600  rounded pb-5  font-serif bg-[#08111b] 
+        
+        " >Check-Mate</h1>
+        </div>
          </div>
-          <p className=" text-[#94a3b8] mb-5">A web Based Detection System  to check harmful phished website with using FastAPI</p>
+          <p className=" text-[#94a3b8] fade-in mb-5">A web Based Detection System  to check harmful phished website with using FastAPI</p>
     
-    <div className="flex gap-x-8 justify-center" >
+    <div className="flex gap-x-8 justify-center fade-in " >
          <Button >Check URL !</Button>
          <Button>Feature</Button>
     </div>

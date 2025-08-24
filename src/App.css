@@ -2,7 +2,9 @@
 
 @import "tailwindcss";
 
-/* Remove invalid @theme block and use standard CSS for custom animation */
+
+
+
 @keyframes rotate-one {
   to {
     transform: rotate(360deg);
@@ -24,19 +26,95 @@
 
 .pulse-height {
   animation: pulse-height 1s ease-in-out infinite;
+  width:20px;
+  height:80px;
+  background:green;
+}
+.delay-0 {
+  animation-delay: 0s;
+}
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+.delay-4 {
+  animation-delay: 0.4s;
+}
+@keyframes fade-in{
+  0%{opacity:0;}
+  100%{opacity:1}
+}
+.fade-in{
+   animation:fade-in 5s forwards;
+   transition: all;
+}
+  
+@keyframes slide {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-50px);
+  }
 }
 
-@keyframes smooth {
-  from{
-    opacity:100%;
-    transition:opacity 3s ease;
+.slide {
+  animation: slide 1s linear  forwards;
+}
+
+
+@keyframes RollAndGrow {
+  0% {
+    transform: rotateZ(0deg) scale(1);
+  }
+  100% {
+    transform: rotateZ(360deg) scale(1.5); /* Increase size by 1.5x */
+  }
+}
+
+.RollAndGrow {
+  animation: RollAndGrow 1s linear forwards;
+}
+
+@keyframes leftToRightReveal {
+  from {
+    transform: translateX(-100%);
   }
   to {
-   opacity:1%;
+    transform: translateX(100%);
   }
 }
 
-.smooth{
-  animation: smooth  ease ;
+.text-reveal-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
 
+.text-reveal-container .reveal-text {
+  opacity: 0;
+  animation: fadeIn 2s ease-out 2s forwards;
+}
+
+.text-reveal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(8,17,27); /* Match background */
+  animation: leftToRightReveal 4s linear forwards;
+  z-index: 2;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }

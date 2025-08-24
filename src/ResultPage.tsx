@@ -22,19 +22,21 @@ const CircularProgress = ({ progress }) => {
   const color = getColor(progress);
 
   const getMessage = (p) => {
-    if (p < 30) return "Keep going!";
-    if (p < 70) return "Good progress!";
-    if (p < 100) return "Almost there!";
+    if (p < 25) return (<span className="text-red-600">⚠️ Risk Error Detcted</span>);
+    if (p < 40) return (<span className="text-red-600">❌ Warning</span>);
+    if (p < 60) return (<span className="text-yellow-500">❓ Suspicious Potential Threat</span>);
+    if (p < 75) return (<span className="text-green-600">✅ Good</span>);
+    if (p < 100) return (<span className="text-blue-600">🌟 Excellent</span>);
     return "Completed!";
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <div className="relative">
+    <div className="slide flex flex-col items-center space-y-4">
+      <div className="relative RollAndGrow ">
         <svg
           height={radius * 2}
           width={radius * 2}
-          className="transform -rotate-90"
+          className="transform -rotate-90 Roll"
         >
           <circle
             stroke="#e5e7eb"
@@ -64,9 +66,19 @@ const CircularProgress = ({ progress }) => {
           {progress}%
         </div>
       </div>
-      <p className="text-lg font-medium" style={{ color }}>
+      <h2 className="text-xl font-medium mt-5" style={{ color }}>
         {getMessage(progress)}
-      </p>
+      </h2>
+      <div className="text-reveal-container">
+      <div className="reveal-text space-x-2 text-md text-blue-500">
+      <p>The APK url <span className="bg-gray-600 p-0.5"></span> </p>
+      <p>Passed {progress}% of safety check </p>
+      <p> risk : {getMessage(progress)}</p>
+      {progress<50 ? <p>Potential threat</p> : <p>You can safely navigate to apk
+        <a className="bg-gray-600">Click to visit</a>
+        </p>}
+        </div>
+      </div>
     </div>
   );
 };

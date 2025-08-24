@@ -8,7 +8,7 @@ import NavBar from './navBar';
 import InputPage from './InputPage';
 
 import Loading from './assets/Loading';
-import { DataComponent } from './Backend';
+import { DataComponent } from './context';
 
 
 

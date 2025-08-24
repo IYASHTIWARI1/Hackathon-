@@ -7,7 +7,10 @@ function NavBar(){
         <>
         <header className="h-15 bg-[#1e293b] flex items-center ">
             <FaAccusoft style= {{ color: "blue" }} className="text-4xl m-1" />
-            <div className=" p-1 m-1 bg-blue-600 text-md font-stretch-expanded font-serif rounded-md">CheckMate</div>
+            <div className=" p-1 m-1  text-md font-stretch-expanded font-serif 
+            bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-lg shadow-md
+            animate-pulse text-white
+            ">Check-Mate</div>
         </header>
         </>
     )

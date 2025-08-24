@@ -8,14 +8,13 @@ function Loading(){
    console.log("loading called");
     return(
      <div className="bg-[#08111b] border-[#334155]  h-fit gap-1 flex items-center justify-center ">
-          <div  className="pulse-height brightness-200" style={{width:"20px", height:"80px", background:"green", animationDuration: "0.5s"}}></div>
-          <div  className="pulse-height brightness-200" style={{width:"20px", height:"80px", background:"green",  animationDuration: "0.8s"}}></div>
-  <div  className="pulse-height brightness-200" style={{width:"20px", height:"80px", background:"green",  animationDuration: "1.1s" }}></div>
-  <div  className="pulse-height brightness-200" style={{width:"20px", height:"80px", background:"green",       animationDuration: "1.4s"}}></div>
-  <div  className="pulse-height brightness-200" style={{width:"20px", height:"80px", background:"green",  animationDuration: "1.7s"}}></div>
- 
- </div>)
-}
+          <div  className="pulse-height delay-0 brightness-200"></div>
+          <div  className="pulse-height delay-1 brightness-200" ></div>
+  <div  className="pulse-height delay-2 brightness-200" ></div>
+  <div  className="pulse-height delay-3 brightness-200" ></div>
+  <div  className="pulse-height delay-4 brightness-200"></div>
+  </div>
+)}
 export default Loading;
 
 

@@ -4,3 +4,4 @@ pydantic
 python-multipart
 apkutils 
 androguard
+python-jose[cryptography]

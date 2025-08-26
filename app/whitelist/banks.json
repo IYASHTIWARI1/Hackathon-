@@ -3,13 +3,25 @@
     "com.sbi.bank": {
       "label": "State Bank of India",
       "signers_sha256": [
-        "put_real_sbi_signature_hash_here"
+        "PUT_REAL_SBI_SIGNATURE_HASH_HERE"
       ]
     },
     "com.hdfc.bank": {
       "label": "HDFC Bank",
       "signers_sha256": [
-        "put_real_hdfc_signature_hash_here"
+        "PUT_REAL_HDFC_SIGNATURE_HASH_HERE"
+      ]
+    },
+    "com.icici.bank": {
+      "label": "ICICI Bank",
+      "signers_sha256": [
+        "PUT_REAL_ICICI_SIGNATURE_HASH_HERE"
+      ]
+    },
+    "com.axis.bank": {
+      "label": "Axis Bank",
+      "signers_sha256": [
+        "PUT_REAL_AXIS_SIGNATURE_HASH_HERE"
       ]
     }
   },
@@ -22,6 +34,16 @@
     {
       "name": "HDFC Bank",
       "packages": ["com.snapwork.hdfc"],
+      "signers_sha256": []
+    },
+    {
+      "name": "ICICI Bank",
+      "packages": ["com.csam.icici.bank.imobile"],
+      "signers_sha256": []
+    },
+    {
+      "name": "Axis Bank",
+      "packages": ["com.axis.mobile"],
       "signers_sha256": []
     }
   ]

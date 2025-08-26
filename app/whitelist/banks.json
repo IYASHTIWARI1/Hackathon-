@@ -1,0 +1,28 @@
+{
+  "apps": {
+    "com.sbi.bank": {
+      "label": "State Bank of India",
+      "signers_sha256": [
+        "put_real_sbi_signature_hash_here"
+      ]
+    },
+    "com.hdfc.bank": {
+      "label": "HDFC Bank",
+      "signers_sha256": [
+        "put_real_hdfc_signature_hash_here"
+      ]
+    }
+  },
+  "banks": [
+    {
+      "name": "State Bank of India",
+      "packages": ["com.sbi.SBIFreedomPlus", "in.org.npci.upiapp"],
+      "signers_sha256": []
+    },
+    {
+      "name": "HDFC Bank",
+      "packages": ["com.snapwork.hdfc"],
+      "signers_sha256": []
+    }
+  ]
+}

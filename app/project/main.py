@@ -1,4 +1,18 @@
 import os
+import json
+from fastapi import FastAPI
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BANKS_FILE = os.path.join(BASE_DIR, "..", "whitelist", "banks.json")
+
+with open(BANKS_FILE, "r") as f:
+    banks_data = json.load(f)
+
+
+print("Banks loaded:", banks_data.keys())   # ✅ console me output dega
+
+app = FastAPI()
+import os
 import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -71,3 +85,8 @@ app.include_router(upload.router)
 @app.get("/ping")
 def ping():
     return {"status": "ok"}
+@app.get("/banks")
+def get_banks():
+    return banks_data
+
+

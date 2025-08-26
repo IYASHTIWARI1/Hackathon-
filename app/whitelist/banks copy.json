@@ -1,0 +1,29 @@
+{
+  "signers": [
+    "put_sha256_fingerprint_here_in_string"
+  ],
+  "apps": {
+    "com.example.bank": {
+      "label": "Example Bank",
+      "signers_sha256": [
+        "abc1234def5678",
+        "9876abc64321"
+      ]
+    },
+    "com.another.bank": {
+      "label": "Another Bank",
+      "signers_sha256": [
+        "112233445566"
+      ]
+    },
+    "com.sbi.bank": {
+      "label": "SBI",
+      "signers_sha256": [
+        "8909f6630b8196e24971923269b072c4b58fea36a1b57bdeafd71d9b033d3dc"
+      ]
+    }
+  }
+}
+
+
+

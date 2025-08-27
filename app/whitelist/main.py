@@ -17,7 +17,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Root endpoint (check API is running)
 @app.get("/")
 async def root():
-    return {"message": "APK Detector API is running!"}
+ return {"message": "APK Detector API is running!"}
 
 # Upload endpoint
 @app.post("/upload_apk/")
@@ -56,7 +56,7 @@ with open(BANKS_FILE, "r", encoding="utf-8") as f:
     import os
 from starlette.staticfiles import StaticFiles
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # yeh app/project ka path hai
+BASE_DIR = os.path.dirname(os.path.abspath_(__file__))   # yeh app/project ka path hai
 
 # ek level upar jaake app/static/ ko point karo
 STATIC_DIR = os.path.join(BASE_DIR, "..", "static")

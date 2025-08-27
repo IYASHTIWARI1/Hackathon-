@@ -10,15 +10,6 @@ import { Link } from "react-router-dom";
  }
  export default Button;
 
- export function Button2({children,type,className,state}){
-
-     
-   
-     return (
-        <>
-           <button onClick={() => {state(false)} }  className={" bg-gray-950 hover:bg-white hover:text-black inline-block shadow-md  text-white py-1 px-1.5 rounded-sm font-medium cursor-pointer"+"  " + className} type={type} >{children} </button>
-           </>
-      )}
 
  export function Link2({children,className,To}){
      return (
@@ -27,11 +18,3 @@ import { Link } from "react-router-dom";
            </>
       )}
 
-
-
-//  export function Button2({children,type,className,To}){
-//      return (
-//         <>
-//            <button  className={" bg-gray-950  inline-block shadow-md  text-white py-1 px-1.5 rounded-sm font-medium cursor-pointer"+"  " + className} type={type} >{children} </button>
-//            </>
-//       )}

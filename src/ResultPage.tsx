@@ -1,6 +1,6 @@
 import React from "react";
 
-const CircularProgress = ({ progress }) => {
+const CircularProgress = ({Reason, progress}) => {
   const radius = 60;
   const stroke = 12;
   const normalizedRadius = radius - stroke * 0.5;
@@ -29,7 +29,7 @@ const CircularProgress = ({ progress }) => {
     if (p < 100) return (<span className="text-blue-600">🌟 Excellent</span>);
     return "Completed!";
   };
-
+ 
   return (
     <div className="slide flex flex-col items-center space-y-4">
       <div className="relative RollAndGrow ">
@@ -66,17 +66,14 @@ const CircularProgress = ({ progress }) => {
           {progress}%
         </div>
       </div>
-      <h2 className="text-xl font-medium mt-5" style={{ color }}>
+      <h2 className="text-2xl font-medium mt-5" style={{ color }}>
         {getMessage(progress)}
       </h2>
-      <div className="text-reveal-container">
+      <div className=" text-lg font-medium text-reveal-container">
       <div className="reveal-text space-x-2 text-md text-blue-500">
-      <p>The APK url <span className="bg-gray-600 p-0.5"></span> </p>
       <p>Passed {progress}% of safety check </p>
       <p> risk : {getMessage(progress)}</p>
-      {progress<50 ? <p>Potential threat</p> : <p>You can safely navigate to apk
-        <a className="bg-gray-600">Click to visit</a>
-        </p>}
+       {Reason || <div>{Reason}</div>}
         </div>
       </div>
     </div>

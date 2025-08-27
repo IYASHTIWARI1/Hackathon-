@@ -11,14 +11,17 @@ export default function Home() {
     <>
    
     <main  className=" max-w-2xl fade-in  h-11/12">
-
-    {  <Spline 
+   
+    
+    { <Spline 
         scene="https://prod.spline.design/pOWgeYZEBOhqustO/scene.splinecode" 
         onLoad={() => { 
           console.log("state chnged")
           setLoading(false)}}
-     />}
-      
+     />} 
+
+     
+        
      
     </main>
   

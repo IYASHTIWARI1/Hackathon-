@@ -1,55 +1,45 @@
-import { Button2 } from "./Button";
-import { Link2 } from "./Button";
+
 import {useState} from "react";
 import Loading from './assets/Loading';
 import CircularProgress  from './ResultPage';
+import FormComponent from "./form";
+import { useEffect } from "react";
+import BackendComponent from "./Backend";
 
 
 function InputPage(){
-  const[hide,setHide] = useState(true);
-  const[graph,setGraph] = useState(true);
+  const[hide,setHide] = useState(false);
+  
+  const[Collected,setCollect] = useState("");
 
-  if(!hide){
-    setInterval(() => {
-        setGraph(false);
-    }, 6000);
-   
-  }
 
+    
+ function getCollectedData(collectData){
+  setCollect(collectData);
+ }
     return(
 <>
-<div className="bg-[#08111b] border-[#334155]  h-screen flex items-center sm:justify-center p-5 md:p-10">
-    <div className="flex flex-col w-full h-[80%] sm:flex-row ">
+<div className="bg-[#08111b] border-[#334155] scroll-auto h-screen flex items-center sm:justify-center p-5 md:p-10">
+    <div className="flex flex-col  w-full h-[80%] scroll-auto sm:flex-row justify-around ">
 
 
        <div className=" flex items-center  w-1/2 max-w-120 h-full justify-center ">
-        
-        {graph ? (hide ? (<div className="  max-w-lg ">
+        {hide && <Loading/>}
+         {!Collected ? (<div className="  max-w-lg ">
              <h1 className="text-5xl  mb-3 text-blue-600 sm:mb-1 font-serif  " >CHECK URL</h1>
             <p className="hidden sm:block text-[#94a3b8]">Please add the URL of a apk to verify wheather the url if the 
                 <span className="text-blue-500 text-2xl"> legitimate </span>
                 or
-                <span  className=" text-2xl"> phishing</span>
+                <span  className=" text-2xl text-amber-300"> phishing</span>
                 </p>
-        </div>) : <Loading />) : <CircularProgress progress={44} />
+    
+        </div>)  : <BackendComponent setHide={setHide} collectData={Collected} />
        }
         
          </div>
-        <div className="flex relative items-center ">
-           <div className="relative  sm:ml-10  sm:w-md max-w-lg items-end flex flex-col">
-            <form >
-            <label htmlFor="urlInput" className="sr-only">Enter APK URL</label>
-            <input  className=" p-3 block mb-4 text-gray-500 w-70 border border-gray-500" type="url" required  placeholder="http//checkUrl.com"/>
-           </form>
-          <div className="space-x-2.5">
-            
-                
-            <Button2  type="submit" state={setHide} >Analyzie url</Button2>
-            
-           <Link2 >Return Home</Link2>
-           </div>
-        </div>
-        </div>
+         
+        <FormComponent setHide={setHide} getCollectedData={getCollectedData}></FormComponent>
+        
     </div>
 </div>
 </>

@@ -19,11 +19,11 @@ function InputPage(){
  }
     return(
 <>
-<div className="bg-[#08111b] border-[#334155] scroll-auto h-screen flex items-center sm:justify-center p-5 md:p-10">
+<div className="bg-[#08111b] border-[#334155] scroll-auto h-screen flex items-center sm:justify-center p-1 md:p-10">
     <div className="flex flex-col  w-full h-[80%] scroll-auto sm:flex-row justify-around ">
 
 
-       <div className=" flex items-center  w-1/2 max-w-120 h-full justify-center ">
+       <div className=" flex items-center  sm:w-1/2 max-w-120 h-full justify-center ">
         {hide && <Loading/>}
          {!Collected ? (<div className="  max-w-lg ">
              <h1 className="text-5xl  mb-3 text-blue-600 sm:mb-1 font-serif  " >CHECK URL</h1>

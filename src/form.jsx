@@ -228,7 +228,7 @@ function FormComponent({ setHide ,getCollectedData}) {
                     ref={fileRef}
                     type="file"
                     name="uploadFile"
-                    className="block text-white mt-1"
+                    className="block w-full text-white mt-1"
                   />
                 </>
               )}
@@ -239,7 +239,7 @@ function FormComponent({ setHide ,getCollectedData}) {
           <div className="space-x-2.5 mt-2.5">
             <button
               disabled={isDisable}
-              className="bg-gray-950 hover:bg-white hover:text-black inline-block shadow-md text-white py-1 px-1.5 rounded-sm font-medium cursor-pointer"
+              className="bg-gray-950 hover:bg-white border border-white sm:border-0 hover:text-black inline-block shadow-md text-white py-1 px-1.5 rounded-sm font-medium cursor-pointer"
               type="submit"
             >
               Analyse URL

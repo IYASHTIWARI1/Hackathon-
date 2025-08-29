@@ -9,6 +9,7 @@ import InputPage from './InputPage';
 
 import Loading from './assets/Loading';
 import { DataComponent } from './context';
+import Features  from './features';
 
 
 
@@ -21,7 +22,8 @@ function App() {
     <>
 
     <NavBar/>
-      <div className="">
+      <div className=" bg-[#08111b] 
+        ">
         <DataComponent>
         <Routes>
                             
@@ -30,6 +32,7 @@ function App() {
      
         <Route path = "*" element={<Basic/>}/>
         <Route path = "/loading" element={<Loading/>}/>
+        <Route path = "/features" element={<Features/>}/>
        </Routes>
       </DataComponent>
        </div>

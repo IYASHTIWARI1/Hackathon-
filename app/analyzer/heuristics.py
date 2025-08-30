@@ -99,34 +99,34 @@ def check_signer(meta: dict):
 
 
 # --- main scoring function ---
-def score_result(meta, sha256):
-    reasons = []
-    score = 0
+# def score_result(meta, sha256):
+#     reasons = []
+#     score = 0
 
-    # Call signer compare
-    is_genuine, bank_name = check_signer(meta)
-    if is_genuine:
-        return "genuine", 100, [f"Signed by trusted bank: {bank_name}"]
+#     # Call signer compare
+#     is_genuine, bank_name = check_signer(meta)
+#     if is_genuine:
+#         return "genuine", 100, [f"Signed by trusted bank: {bank_name}"]
 
-    # Agar nahi mila to suspicious
-    score += 50
-    reasons.append("Signer not in trusted bank list")
+#     # Agar nahi mila to suspicious
+#     score += 50
+#     reasons.append("Signer not in trusted bank list")
 
-    return "suspicious", score, reasons
-from .heuristics_signer import check_signer   # agar alag file banayi hai
+#     return "suspicious", score, reasons
+# from .heuristics_signer import check_signer   # agar alag file banayi hai
 # ya same file me banaya hai to direct call kar sakte ho
 
-def score_result(meta, sha256):
-    reasons = []
-    score = 0
+# def score_result(meta, sha256):
+#     reasons = []
+#     score = 0
 
-    # Signer check
-    is_genuine, bank_name = check_signer(meta)
-    if is_genuine:
-        return "genuine", 100, [f"Signed by trusted bank: {bank_name}"]
+#     # Signer check
+#     is_genuine, bank_name = check_signer(meta)
+#     if is_genuine:
+#         return "genuine", 100, [f"Signed by trusted bank: {bank_name}"]
 
-    # Agar match nahi hua to suspicious count karo
-    score += 50
-    reasons.append("Signer not in trusted bank list")
+#     # Agar match nahi hua to suspicious count karo
+#     score += 50
+#     reasons.append("Signer not in trusted bank list")
 
-    return "suspicious", score, reasons
+#     return "suspicious", score, reasons

@@ -1,36 +1,62 @@
+import os
+import re
+import hashlib
+from typing import List, Dict, Any, Tuple
 from androguard.core.apk import APK
-import hashlib, os, re
-from .heuristics import score_result
+from .heuristics import score_result   # <-- तुम्हारा scoring function import
 
-
-# Helper function: text me se URLs nikalna
+# ----------------- Helpers -----------------
 def _extract_urls_from_text(txt: str):
+    """Text से crude URLs निकालता है"""
     if not txt:
         return []
     return re.findall(r"https?://[^\s\"\'<>]+", txt)
 
+def _gather_cert_ders(a: APK) -> List[bytes]:
+    """APK Signing v3/v2/v1 - जो भी मिले collect कर लो"""
+    for getter in (a.get_certificates_der_v3, a.get_certificates_der_v2, a.get_certificates):
+        try:
+            certs = getter() or []
+            if certs:
+                return certs
+        except Exception:
+            pass
+    return []
 
-# Main function: APK analyze karna
-def analyze_apk(path: str, sha256: str):
-    # APK file load karo
-    a = APK(path)   # Agar invalid APK hai to error throw karega
+def signer_sha256_list(apk_path: str) -> List[str]:
+    """Har signing certificate ka SHA-256 fingerprint return karta hai"""
+    a = APK(apk_path)
+    ders = _gather_cert_ders(a)
+    return [hashlib.sha256(der).hexdigest() for der in ders]
 
-    # Basic metadata
+# ----------------- Main Analysis -----------------
+def analyze_apk(path: str, sha256: str = None) -> Dict[str, Any]:
+    """
+    APK Analyze karke final result return karega
+    """
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"APK not found: {path}")
+
+    # --- APK load ---
+    a = APK(path)   # Invalid APK hua to exception throw karega
+
+    # --- Basic metadata ---
     label = a.get_app_name()
     pkg = a.package
     version = a.get_androidversion_name()
     perms = sorted(set(a.get_permissions()) or [])
 
-    # Signer fingerprint (best effort)
+    # --- Signer fingerprint(s) ---
     signer = None
     try:
-        certs = a.get_certificates_der_v2() or a.get_certificates_der_v3() or a.get_certificates()
+        certs = _gather_cert_ders(a)
         if certs:
             signer = hashlib.sha256(certs[0]).hexdigest()
     except Exception:
         pass
 
-    # Crude URL extraction
+    # --- URLs extraction ---
     urls = set()
     try:
         axml = a.get_android_manifest_axml()
@@ -44,7 +70,7 @@ def analyze_apk(path: str, sha256: str):
     except Exception:
         pass
 
-    # Final collected metadata
+    # --- Final metadata object ---
     meta = {
         "package": pkg,
         "label": label,
@@ -55,93 +81,16 @@ def analyze_apk(path: str, sha256: str):
         "urls": sorted(urls),
     }
 
-    # Heuristic score nikalna (alag module me define hai)
-    verdict, score, reasons = score_result(meta, sha256)
-
-    return verdict, score, reasons, meta
-import hashlib
-from typing import List
-from androguard.core.apk import APK
-
-def _gather_cert_ders(a: APK) -> List[bytes]:
-    """
-    APK Signing v3/v2/v1 sab cover: jo mil jaye use kar lo.
-    """
-    for getter in (a.get_certificates_der_v3, a.get_certificates_der_v2, a.get_certificates):
-        try:
-            certs = getter() or []
-            if certs:
-                return certs
-        except Exception:
-            pass
-    return []
-
-def signer_sha256_list(apk_path: str) -> List[str]:
-    """
-    Har signing certificate ka SHA-256 fingerprint (lowercase hex) return karta hai.
-    """
-    a = APK(apk_path)
-    ders = _gather_cert_ders(a)
-    return [hashlib.sha256(der).hexdigest() for der in ders]
-# app/core.py
-import os
-
-def analyze_apk(apk_path: str) -> dict:
-    """
-    Return a dict like:
-    {
-      "package": "com.bank.app",
-      "label": "FAKE" / "SUSPICIOUS" / "SAFE",
-      "score": 0.92,
-      "reasons": ["Unknown signer", "Mismatched package name"],
-      "meta": {"size_bytes": 1234}
-    }
-    """
-    if not os.path.exists(apk_path):
-        raise FileNotFoundError("APK not found")
-
-    # --- Hook #1: call your heuristics ---
-    reasons = []
-    score = 0.0
-    label = "UNKNOWN"
-    package_name = None
-
-    # Example wiring (rename according to your code):
+    # --- Heuristic scoring ( तुम्हारे module se ) ---
     try:
-        # from app.heuristics import run_all_checks
-        # hr = run_all_checks(apk_path)     # expect dict with 'score','reasons','package'
-        # score = hr.get('score', 0.0)
-        # reasons.extend(hr.get('reasons', []))
-        pass
+        verdict, score, reasons = score_result(meta, sha256 or "")
     except Exception as e:
-        reasons.append(f"Heuristics error: {e}")
-
-    # --- Hook #2: signer verification ---
-    try:
-        # from app.heuristics_signer import check_signer
-        # signer_ok, signer_reason = check_signer(apk_path)
-        # if not signer_ok:
-        #     score = max(score, 0.8)
-        #     reasons.append(signer_reason or "Signer not trusted")
-        pass
-    except Exception as e:
-        reasons.append(f"Signer check error: {e}")
-
-    # --- Example simple labeling (tune as per your calc) ---
-    if score >= 0.85:
-        label = "FAKE"
-    elif score >= 0.5:
-        label = "SUSPICIOUS"
-    else:
-        label = "SAFE"
+        verdict, score, reasons = "ERROR", 0.0, [f"Heuristics failed: {e}"]
 
     return {
-        "package": package_name,
-        "label": label,
+        "package": pkg,
+        "verdict": verdict,   # SAFE / SUSPICIOUS / FAKE
         "score": round(score, 2),
         "reasons": reasons,
-        "meta": {"size_bytes": os.path.getsize(apk_path)}
+        "meta": meta
     }
-def analyze_apk(filepath):
-    # Dummy analysis
-    return {"label": "Safe", "score": 95}

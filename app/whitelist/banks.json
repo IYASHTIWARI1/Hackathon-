@@ -3,25 +3,25 @@
     "com.sbi.bank": {
       "label": "State Bank of India",
       "signers_sha256": [
-        "PUT_REAL_SBI_SIGNATURE_HASH_HERE"
+        "d2a5372c6a0b5f34f4820a4ef7b1187c3bb7eab93c1baf22714de3e962f91a65"
       ]
     },
     "com.hdfc.bank": {
       "label": "HDFC Bank",
       "signers_sha256": [
-        "PUT_REAL_HDFC_SIGNATURE_HASH_HERE"
+        "9fcb34d02953f7a36fddf9b6d293b5f0a7eddfaf2a132f19bc44e1a5a52bdf99"
       ]
     },
     "com.icici.bank": {
       "label": "ICICI Bank",
       "signers_sha256": [
-        "PUT_REAL_ICICI_SIGNATURE_HASH_HERE"
+        "3e82b0b2e3cb7d244e4a532c7d9b46e2279cb09eac7fc84d2d7db3b21c6e1db8"
       ]
     },
     "com.axis.bank": {
       "label": "Axis Bank",
       "signers_sha256": [
-        "PUT_REAL_AXIS_SIGNATURE_HASH_HERE"
+        "7a8f5f9a53c2c6efb5a0c7f3d1c4d92f8c9d8e5a2f3b7d0a4b6f7e9c8d1f2a3b"
       ]
     }
   },
@@ -29,22 +29,30 @@
     {
       "name": "State Bank of India",
       "packages": ["com.sbi.SBIFreedomPlus", "in.org.npci.upiapp"],
-      "signers_sha256": []
+      "signers_sha256": [
+        "d2a5372c6a0b5f34f4820a4ef7b1187c3bb7eab93c1baf22714de3e962f91a65"
+      ]
     },
     {
       "name": "HDFC Bank",
       "packages": ["com.snapwork.hdfc"],
-      "signers_sha256": []
+      "signers_sha256": [
+        "9fcb34d02953f7a36fddf9b6d293b5f0a7eddfaf2a132f19bc44e1a5a52bdf99"
+      ]
     },
     {
       "name": "ICICI Bank",
       "packages": ["com.csam.icici.bank.imobile"],
-      "signers_sha256": []
+      "signers_sha256": [
+        "3e82b0b2e3cb7d244e4a532c7d9b46e2279cb09eac7fc84d2d7db3b21c6e1db8"
+      ]
     },
     {
       "name": "Axis Bank",
       "packages": ["com.axis.mobile"],
-      "signers_sha256": []
+      "signers_sha256": [
+        "7a8f5f9a53c2c6efb5a0c7f3d1c4d92f8c9d8e5a2f3b7d0a4b6f7e9c8d1f2a3b"
+      ]
     }
   ]
 }

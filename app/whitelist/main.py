@@ -22,7 +22,7 @@ async def root():
 # Upload endpoint
 @app.post("/upload_apk/")
 async def upload_apk(file: UploadFile = File(...)):
-    if not file.filename.endswith(".apk"):
+    if not file.filename.lower().endswith(".apk"):
         raise HTTPException(status_code=400, detail="Only APK files are allowed")
 
     file_path = os.path.join(UPLOAD_DIR, file.filename)
@@ -36,9 +36,15 @@ async def upload_apk(file: UploadFile = File(...)):
         result = analyze_apk(file_path)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
+    
 
-    return {"filename": file.filename, "analysis": result}
-
+    return {
+        "filename": file.filename,
+        "verdict": result.get("verdict"),   # SAFE / suspicious / genuine
+        "score": result.get("score"),
+        "reasons": result.get("reasons"),
+        "meta": result.get("meta")
+    }
 
 from project.routers import upload_routes   # <- yeh import karna zaroori hai
 
@@ -63,3 +69,40 @@ STATIC_DIR = os.path.join(BASE_DIR, "..", "static")
 STATIC_DIR = os.path.abspath(STATIC_DIR)
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+# import os
+# from fastapi import FastAPI
+# from app.analyzer.core import analyze_apk   # agar analyzer kahi use hota hai
+# from project.routers import upload, banks, auth  # <- apne routers import karo
+
+# # Create FastAPI app
+# app = FastAPI(
+#     title="APK Detector",
+#     description="Detect fake APKs",
+#     version="1.0.0"
+# )
+
+# # Root endpoint (check API is running)
+# @app.get("/")
+# async def root():
+#     return {"message": "APK Detector API is running!"}
+
+# # ✅ sirf routers include karo
+# app.include_router(upload.router)
+# app.include_router(banks.router)
+# app.include_router(auth.router)
+
+# # Agar static files serve karni hain (jaise CSS/JS frontend ke liye)
+# from starlette.staticfiles import StaticFiles
+
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_DIR = os.path.join(BASE_DIR, "..", "static")
+# STATIC_DIR = os.path.abspath(STATIC_DIR)
+
+# app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+
+
+
+
+

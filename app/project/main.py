@@ -1,6 +1,12 @@
 import os
 import json
 from fastapi import FastAPI
+app = FastAPI()
+
+# @app.get("/")
+# def root():
+#     return {"message": "Server is running!"}
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BANKS_FILE = os.path.join(BASE_DIR, "..", "whitelist", "banks.json")
@@ -12,6 +18,14 @@ with open(BANKS_FILE, "r") as f:
 print("Banks loaded:", banks_data.keys())   # ✅ console me output dega
 
 app = FastAPI()
+
+# @app.get("/")
+# def root():
+#     return {"message": "Server is running!"}
+
+
+
+
 import os
 import sys
 from fastapi import FastAPI
@@ -30,6 +44,12 @@ from core.logging_config import setup_logging
 
 # App create
 app = FastAPI()
+
+# @app.get("/")
+# def root():
+#     return {"message": "Server is running!"}
+
+
 
 # Logging
 logger = setup_logging()
@@ -97,3 +117,45 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# from fastapi import FastAPI
+
+# app = FastAPI()
+
+# @app.get("/")
+# def root():
+#     return {"message": "Server is running!"}
+from fastapi import FastAPI, UploadFile, File
+import hashlib
+
+app = FastAPI()
+
+# Whitelist SHA256 set (aapke stored SHAs)
+whitelist = {
+      "d2a5372c6a0b5f34f4820a4ef7b1187c3bb7eab93c1baf22714de3e962f91a65"
+      "9fcb34d02953f7a36fddf9b6d293b5f0a7eddfaf2a132f19bc44e1a5a52bdf99"
+      "3e82b0b2e3cb7d244e4a532c7d9b46e2279cb09eac7fc84d2d7db3b21c6e1db8"
+      "7a8f5f9a53c2c6efb5a0c7f3d1c4d92f8c9d8e5a2f3b7d0a4b6f7e9c8d1f2a3b"
+
+    # aur bhi SHAs yahan add karo
+}
+
+def get_sha256(file_bytes: bytes) -> str:
+    return hashlib.sha256(file_bytes).hexdigest()
+
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    file_bytes = await file.read()
+    sha256_hash = get_sha256(file_bytes)
+
+    # Verdict check
+    if sha256_hash in whitelist:
+        verdict = "good"
+    else:
+        verdict = "bad"
+
+    return {
+        "filename": file.filename,
+        "sha256": sha256_hash,
+        "verdict": verdict,
+        "message": "File uploaded safely (not executed)"
+    }

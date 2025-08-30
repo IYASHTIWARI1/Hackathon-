@@ -50,8 +50,15 @@ async def upload_file(file: UploadFile = File(...)):
     filename = file.filename
 
     # ✅ Step 23: extension check
+    # if not is_allowed_extension(filename, allowed_extensions):
+    #     raise HTTPException(status_code=400, detail="Only APK and ZIP files are allowed")
+
+    # ✅ Step 23: extension + content-type check
     if not is_allowed_extension(filename, allowed_extensions):
-        raise HTTPException(status_code=400, detail="Only APK and ZIP files are allowed")
+        raise HTTPException(status_code=400, detail=f"Invalid extension: {filename}. Only APK/ZIP allowed")
+
+    if file.content_type not in ["application/vnd.android.package-archive", "application/zip", "application/octet-stream"]:
+        raise HTTPException(status_code=400, detail=f"Invalid content-type: {file.content_type}. Only APK/ZIP allowed")
 
     save_path = os.path.join(UPLOAD_DIR, filename)
 
@@ -120,5 +127,3 @@ def save_upload(file: UploadFile):
         "size_mb": size,
         "sha256": sha256_file(file_path)
     }
-
-

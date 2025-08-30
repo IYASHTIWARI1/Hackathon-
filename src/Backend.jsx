@@ -8,7 +8,7 @@ function BackendComponent({ collectData, setHide, onScoreCalculated }) {
 
   async function fetchBackendResult(collectData) {
     try {
-      const response = await fetch("https://hackathon-13.onrender.com/docs", {
+      const response = await fetch("https://hackathon-16.onrender.com/docs", {
         method: "POST",
           headers: {
         "Content-Type": "application/json",  // ✅ Tells backend to parse body as JSON

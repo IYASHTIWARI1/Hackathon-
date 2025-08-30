@@ -110,6 +110,19 @@ def get_banks():
     return banks_data
 from fastapi.middleware.cors import CORSMiddleware
 
+pp = FastAPI()
+
+# yaha apne allowed origins specify karo
+origins = [
+    "http://localhost:5173",   # tumhara frontend local
+    "https://hackathon-13.onrender.com"  # agar deployed frontend hai to
+]
+
+# apne routes niche likho
+@app.get("/")
+def home():
+    return {"msg": "CORS fixed!"}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Use ["http://localhost:3000"] for security

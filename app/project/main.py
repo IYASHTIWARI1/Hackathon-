@@ -173,3 +173,15 @@ async def upload_file(file: UploadFile = File(...)):
         "verdict": verdict,
         "message": "File uploaded safely (not executed)"
     }
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",                # local frontend
+        "https://check-matebugs.netlify.app"    # deployed frontend
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

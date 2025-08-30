@@ -175,7 +175,7 @@ async def upload_file(file: UploadFile = File(...)):
     }
 from fastapi.middleware.cors import CORSMiddleware
 
-pp = FastAPI()
+app = FastAPI()
 
 # yaha apne allowed origins specify karo
 origins = [
@@ -202,4 +202,4 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"message": "Server is running!"}
+    return {"message": "hello!"}

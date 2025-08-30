@@ -108,36 +108,36 @@ def ping():
 @app.get("/banks")
 def get_banks():
     return banks_data
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
 
-pp = FastAPI()
+# pp = FastAPI()
 
-# yaha apne allowed origins specify karo
-origins = [
-    "https://check-matebugs.netlify.app",
-    "http://localhost:5173",   # tumhara frontend local
-      # agar deployed frontend hai to
-]
+# # yaha apne allowed origins specify karo
+# origins = [
+#     "https://check-matebugs.netlify.app",
+#     "http://localhost:5173",   # tumhara frontend local
+#       # agar deployed frontend hai to
+# ]
 
-# apne routes niche likho
-@app.get("/")
-def home():
-    return {"msg": "CORS fixed!"}
+# # apne routes niche likho
+# @app.get("/")
+# def home():
+#     return {"msg": "CORS fixed!"}
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Use ["http://localhost:3000"] for security
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-# from fastapi import FastAPI
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Use ["http://localhost:3000"] for security
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+# # from fastapi import FastAPI
 
-# app = FastAPI()
+# # app = FastAPI()
 
-@app.get("/")
-def root():
-    return {"message": "Server is running!"}
+# @app.get("/")
+# def root():
+#     return {"message": "Server is running!"}
 from fastapi import FastAPI, UploadFile, File
 import hashlib
 

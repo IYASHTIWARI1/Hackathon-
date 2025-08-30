@@ -114,6 +114,7 @@ pp = FastAPI()
 
 # yaha apne allowed origins specify karo
 origins = [
+    "https://check-matebugs.netlify.app",
     "http://localhost:5173",   # tumhara frontend local
     "https://hackathon-13.onrender.com"  # agar deployed frontend hai to
 ]

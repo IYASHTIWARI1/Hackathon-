@@ -31,7 +31,7 @@ const CircularProgress = ({ progress}) => {
   };
  
   return (
-    <div className="slide flex gap-10 sm:gap-0   sm:flex-col items-center space-y-4">
+    <div className="slide flex gap-10 sm:gap-0  flex-col  items-center space-y-4">
       <div className="relative  RollAndGrow ">
         <svg
           height={radius * 2}

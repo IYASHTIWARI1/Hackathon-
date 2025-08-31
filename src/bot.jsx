@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
    
-    <main  className=" max-w-2xl fade-in  h-11/12">
+    <main  className=" max-w-md fade-in  h-11/12">
    
     
     { <Spline 

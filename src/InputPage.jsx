@@ -27,7 +27,7 @@ function InputPage(){
         {hide && <Loading/>}
          {!Collected ? (<div className="  max-w-lg ">
              <h1 className="text-5xl  mb-3 text-blue-600 sm:mb-1 font-serif  " >CHECK URL</h1>
-            <p className="hidden sm:block text-[#94a3b8]">Please add the URL of a apk to verify wheather the url if the 
+            <p className=" text-[#94a3b8]">Please upload the apk file to verify wheather the apk is 
                 <span className="text-blue-500 text-2xl"> legitimate </span>
                 or
                 <span  className=" text-2xl text-amber-300"> phishing</span>

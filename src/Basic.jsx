@@ -25,7 +25,7 @@ function HomePage(){
          <Button >Check APK !</Button>
          <Button2>Feature</Button2>
     </div>
-    <div className="flex grow items-end justify-center">
+    <div className="flex grow items-end  justify-center">
        <Bot/>
       
     </div>

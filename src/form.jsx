@@ -29,7 +29,7 @@ function FormComponent({ setHide, getCollectedData }) {
     <div className="flex relative items-center">
       <div className="relative mb-4 sm:ml-10 sm:w-md max-w-lg items-end flex flex-col">
         <form onSubmit={handleSubmit} className="w-full">
-          <label className="mt-2 text-gray-600 block">Upload File:</label>
+          <label className="mt-2 text-gray-400 block">Upload File:</label>
           <input
             onChange={inputValue}
             ref={inputRef}
@@ -44,7 +44,7 @@ function FormComponent({ setHide, getCollectedData }) {
               className="bg-gray-950 hover:bg-white border cursor-pointer disabled:cursor-not-allowed border-white sm:border-0 hover:text-black inline-block shadow-md text-white py-1 px-1.5 rounded-sm font-medium cursor-pointer"
               type="submit"
             >
-              Analyse URL
+              Analyse APK
             </button>
 
             <Link2 To={"/"}>Return Home</Link2>

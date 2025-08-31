@@ -1,6 +1,6 @@
 import React from "react";
 
-const CircularProgress = ({Reason, progress}) => {
+const CircularProgress = ({ progress}) => {
   const radius = 60;
   const stroke = 12;
   const normalizedRadius = radius - stroke * 0.5;
@@ -73,7 +73,11 @@ const CircularProgress = ({Reason, progress}) => {
       <div className="reveal-text space-x-2 text-md text-blue-500">
       <p>Passed {progress}% of safety check </p>
       <p> risk : {getMessage(progress)}</p>
-       {Reason || <div>{Reason}</div>}
+      {progress<=9 && <p>APK is signed with an untrusted certificate.
+</p>}
+        {progress <= 9 && <p>
+             APK size and structure look unusual compared to standard apps.
+         </p>}
         </div>
       </div>
     </div>

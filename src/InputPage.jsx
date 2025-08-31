@@ -33,7 +33,7 @@ function InputPage(){
                 <span  className=" text-2xl text-amber-300"> phishing</span>
                 </p>
     
-        </div>)  : <BackendComponent setHide={setHide} collectData={Collected} />
+        </div>)  : (<BackendComponent setHide={setHide} collectData={Collected} />)
        }
         
          </div>

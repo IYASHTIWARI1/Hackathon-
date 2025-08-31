@@ -26,8 +26,8 @@ function InputPage(){
        <div className=" flex items-center  sm:w-1/2 max-w-120 h-full justify-center ">
         {hide && <Loading/>}
          {!Collected ? (<div className="  max-w-lg ">
-             <h1 className="text-5xl  mb-3 text-blue-600 sm:mb-1 font-serif  " >CHECK URL</h1>
-            <p className=" text-[#94a3b8]">Please upload the apk file to verify wheather the apk is 
+             <h1 className="text-5xl  mb-3 text-blue-600 sm:mb-1 font-serif  " >CHECK APK</h1>
+            <p className=" text-[#94a3b8]">Please upload the APK file to verify wheather the APK is 
                 <span className="text-blue-500 text-2xl"> legitimate </span>
                 or
                 <span  className=" text-2xl text-amber-300"> phishing</span>

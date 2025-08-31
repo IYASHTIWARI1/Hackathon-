@@ -19,10 +19,10 @@ function HomePage(){
         " >Check-Mate</h1>
         </div>
          </div>
-          <p className=" text-[#94a3b8] fade-in mb-5">A web Based Detection System  to check harmful phished website with using FastAPI</p>
+          <p className=" text-[#94a3b8] fade-in mb-5">A web Based Detection System  to check harmful phished APK files with using FastAPI</p>
     
     <div className="flex gap-x-8 justify-center fade-in " >
-         <Button >Check URL !</Button>
+         <Button >Check APK !</Button>
          <Button2>Feature</Button2>
     </div>
     <div className="flex grow items-end justify-center">
